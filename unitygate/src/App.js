@@ -3,6 +3,8 @@ import Particles from 'react-particles-js';
 import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
 import SearchBox from './components/SearchBox/SearchBox';
+import Card from './components/Card/Card';
+import Feedback from './components/Feedback/Feedback';
 import './App.css';
 
 const particlesOptions = {
@@ -36,24 +38,96 @@ const particlesOptions = {
 }
 
 class App extends React.Component {
-  constructor(prop){
-    super(prop)
+  constructor(){
+    super()
     this.state = {
-
+      students: [],
+      menu: 'home'
     }
   }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/').then(response => {
+        return response.json();       
+    }).then(data => {
+        console.log(data);
+        this.setState({students: data})
+    }).catch(err => console.log('error', err))
+}
+  searchStudent = () => {
+    this.setState({menu: 'search'})
+  }
+
+  alumni = () => {
+    console.log('click');
+    this.setState({menu: 'alumni'})
+  }
+
+  feedback = () => {
+    this.setState({menu: 'feedback'})
+  }
+
+
+
   render (){
-    return (
-      <div className="App">
+    
+    if (this.state.menu === 'home'){
+      return (
+        <div className="App">
         <Particles 
           className='particles'
           params={particlesOptions}
         />
-        <Navigation />
+       
+        <Navigation addAlumni={this.alumni} feedback={this.feedback}/>
         <Logo />
-        <SearchBox />
+        <SearchBox search={this.searchStudent}/>
+        
+      
       </div>
-    );
+      );
+    }else if (this.state.menu === 'alumni'){
+      return (
+        <div className="App">
+          <Particles 
+            className='particles'
+            params={particlesOptions}
+          />
+          <p className='white center f1'>Display all Alumni. Coming soon...</p>
+        </div>
+      );
+    } else if (this.state.menu === 'search') {
+      return (
+        <div className="App">
+          <Particles 
+            className='particles'
+            params={particlesOptions}
+          />
+          <h1 className='f5 white'>Gindiri Old Students Association Alumni</h1>
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
+      );
+    } else if (this.state.menu === 'feedback') {
+      return (
+        <div>
+          <Particles 
+            className='particles'
+            params={particlesOptions}
+          />
+          <Feedback />
+        </div>
+      );
+    }
+      
     }
 }
 

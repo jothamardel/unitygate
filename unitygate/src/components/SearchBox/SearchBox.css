@@ -1,5 +1,19 @@
+.welcome {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
 .unity {
     font-size: 5rem;
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.gosa {
+    margin-top: 0;
+    padding-top: 0;
 }
 
 input {
