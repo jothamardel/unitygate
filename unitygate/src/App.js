@@ -3,9 +3,9 @@ import Particles from 'react-particles-js';
 import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
 import SearchBox from './components/SearchBox/SearchBox';
-import Card from './components/Card/Card';
 import Feedback from './components/Feedback/Feedback';
 import './App.css';
+import CardList from './components/CardList/CardList';
 
 const particlesOptions = {
   particles: {
@@ -41,6 +41,7 @@ class App extends React.Component {
   constructor(){
     super()
     this.state = {
+      searchField: '',
       students: [],
       menu: 'home'
     }
@@ -70,6 +71,11 @@ class App extends React.Component {
 
 
   render (){
+
+    const filteredStudents = this.state.students.filter((users) => {
+      return users.name.toLowerCase().includes(this.state.searchField.toLowerCase() || 
+      users.year.toLowerCase().includes(this.state.searchField.toLowerCase()))
+    })
     
     if (this.state.menu === 'home'){
       return (
@@ -104,16 +110,7 @@ class App extends React.Component {
             params={particlesOptions}
           />
           <h1 className='f5 white'>Gindiri Old Students Association Alumni</h1>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          <CardList users={filteredStudents}/>
         </div>
       );
     } else if (this.state.menu === 'feedback') {
