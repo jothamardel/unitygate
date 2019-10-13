@@ -7,6 +7,7 @@ import Feedback from './components/Feedback/Feedback';
 import './App.css';
 import CardList from './components/CardList/CardList';
 
+
 const particlesOptions = {
   particles: {
     number: {
@@ -43,7 +44,7 @@ class App extends React.Component {
     this.state = {
       searchField: '',
       students: [],
-      menu: 'home'
+      menu: 'home',
     }
   }
 
@@ -63,8 +64,7 @@ class App extends React.Component {
     const search = document.getElementById('gosa')
     console.log('button', search.value)
     const searchInput = search.value
-    this.setState({searchField: searchInput})
-    this.setState({menu: 'search'})
+    this.setState({searchField: searchInput, menu: 'search'})
   }
 
   alumni = () => {
@@ -75,8 +75,6 @@ class App extends React.Component {
   feedback = () => {
     this.setState({menu: 'feedback'})
   }
-
-
 
   render (){
 
