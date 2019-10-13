@@ -38,8 +38,8 @@ const particlesOptions = {
 }
 
 class App extends React.Component {
-  constructor(){
-    super()
+  constructor(prop){
+    super(prop)
     this.state = {
       searchField: '',
       students: [],
@@ -49,18 +49,26 @@ class App extends React.Component {
 
   componentDidMount() {
     fetch('http://localhost:3000/').then(response => {
-        return response.json();       
+        return response.json()
     }).then(data => {
         console.log(data);
         this.setState({students: data})
     }).catch(err => console.log('error', err))
 }
-  searchStudent = () => {
+
+
+  searchStudent = (e) => {
+    e.preventDefault()
+
+    const search = document.getElementById('gosa')
+    console.log('button', search.value)
+    const searchInput = search.value
+    this.setState({searchField: searchInput})
     this.setState({menu: 'search'})
   }
 
   alumni = () => {
-    console.log('click');
+    // console.log('click');
     this.setState({menu: 'alumni'})
   }
 
@@ -72,11 +80,23 @@ class App extends React.Component {
 
   render (){
 
-    const filteredStudents = this.state.students.filter((users) => {
-      return users.name.toLowerCase().includes(this.state.searchField.toLowerCase() || 
-      users.year.toLowerCase().includes(this.state.searchField.toLowerCase()))
-    })
+    let filteredStudents;
+
+    if(this.state.students.length) {
+
+      filteredStudents = this.state.students.filter((students) => {
+        return students.name.toLowerCase().includes(this.state.searchField.toLowerCase()) ||
+        students.year.toLowerCase().includes(this.state.searchField.toLowerCase())
+      })
     
+    // console.log(filteredStudents)
+  }
+
+
+  console.log(filteredStudents)
+    
+ 
+
     if (this.state.menu === 'home'){
       return (
         <div className="App">
@@ -110,6 +130,7 @@ class App extends React.Component {
             params={particlesOptions}
           />
           <h1 className='f5 white'>Gindiri Old Students Association Alumni</h1>
+          {console.log('to cardlist', filteredStudents)}
           <CardList users={filteredStudents}/>
         </div>
       );
