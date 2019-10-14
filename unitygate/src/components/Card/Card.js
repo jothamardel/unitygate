@@ -19,7 +19,7 @@ const Card = ({ name, year }) => {
                         src={image[num]} className="db" alt="visual rep of gosa" />
                         <div className="pa2 bt b--black-20">
                         <h1 className="f6 db white hover-light-yellow">{ name }</h1>
-                        <p className="f6 black mv1">{ year }</p>
+                        <p className="f6 white mv1">{ year }</p>
                         <a className="link tc ph3 pv1 db bg-animate bg-green hover-bg-blue white f6 br1" href='#' >View Profile</a>
                         </div>
                         <p className="child absolute top-1 right-1 ba bw1 black-40 grow no-underline br-100 w1 h1 pa2 lh-solid b" >×</p>

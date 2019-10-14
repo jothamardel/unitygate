@@ -10,3 +10,7 @@
   left: 0;
   z-index: -1;
 }
+
+.viewArea {
+  margin: 0;
+}

@@ -45,6 +45,8 @@ class App extends React.Component {
       searchField: '',
       students: [],
       menu: 'home',
+      error: '',
+      isModal: false
     }
   }
 
@@ -52,7 +54,7 @@ class App extends React.Component {
     fetch('http://localhost:3000/').then(response => {
         return response.json()
     }).then(data => {
-        console.log(data);
+        // console.log(data);
         this.setState({students: data})
     }).catch(err => console.log('error', err))
 }
@@ -60,11 +62,16 @@ class App extends React.Component {
 
   searchStudent = (e) => {
     e.preventDefault()
-
+    
     const search = document.getElementById('gosa')
-    console.log('button', search.value)
+    console.log('button', typeof(search.value))
     const searchInput = search.value
+    if(searchInput.length === 0){
+      
+      this.setState({menu: 'home', error: 'no input'})
+    } else {
     this.setState({searchField: searchInput, menu: 'search'})
+    }
   }
 
   alumni = () => {
@@ -91,7 +98,7 @@ class App extends React.Component {
   }
 
 
-  console.log(filteredStudents)
+  // console.log(filteredStudents)
     
  
 
@@ -106,7 +113,7 @@ class App extends React.Component {
         <Navigation addAlumni={this.alumni} feedback={this.feedback}/>
         <Logo />
         <SearchBox search={this.searchStudent}/>
-        
+        {this.state.error}
       
       </div>
       );
@@ -127,8 +134,8 @@ class App extends React.Component {
             className='particles'
             params={particlesOptions}
           />
-          <h1 className='f5 white'>Gindiri Old Students Association Alumni</h1>
-          {console.log('to cardlist', filteredStudents)}
+          <h1 className='viewArea f1 white shadow-2 static'>Gindiri Old Students Association Alumni</h1>
+          {/* {console.log('to cardlist', filteredStudents)} */}
           <CardList users={filteredStudents}/>
         </div>
       );
@@ -142,8 +149,7 @@ class App extends React.Component {
           <Feedback />
         </div>
       );
-    }
-      
+    }     
     }
 }
 
