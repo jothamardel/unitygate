@@ -8,10 +8,11 @@ const CardList = ({ users }) => {
         users.map((user, i) => {
             return (
                 <Card 
-                key={i} 
+                key={users[i].id} 
                 id={i} 
                 name={users[i].name} 
-                year={users[i].year} 
+                year={users[i].year}
+                gender={users[i].gender} 
                 />
             );
         })
