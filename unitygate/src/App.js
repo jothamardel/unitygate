@@ -6,6 +6,7 @@ import SearchBox from './components/SearchBox/SearchBox';
 import Feedback from './components/Feedback/Feedback';
 import './App.css';
 import CardList from './components/CardList/CardList';
+import SearchBoxExtension from './components/SearchBoxExtension/SearchBoxExtension';
 
 
 const particlesOptions = {
@@ -54,7 +55,7 @@ class App extends React.Component {
     fetch('http://localhost:3000/').then(response => {
         return response.json()
     }).then(data => {
-        console.log(data);
+        // console.log(data);
         this.setState({students: data})
     }).catch(err => console.log('error', err))
 }
@@ -64,11 +65,12 @@ class App extends React.Component {
     e.preventDefault()
     
     const search = document.getElementById('gosa')
-    console.log('button', typeof(search.value))
+    // console.log('button', typeof(search.value))
     const searchInput = search.value
     if(searchInput.length === 0){
-      
-      this.setState({menu: 'home', error: 'no input'})
+      this.state.menu === 'home' ?
+      this.setState({menu: 'home', error: 'Invalid input'}) :
+      this.setState({menu: 'search', error: 'invalid input'})
     } else {
     this.setState({searchField: searchInput, menu: 'search'})
     }
@@ -125,6 +127,8 @@ class App extends React.Component {
             params={particlesOptions}
           />
           <p className='white center f1'>Display all Alumni. Coming soon...</p>
+          {/* <CardList users={filteredStudents}/> */}
+          
         </div>
       );
     } else if (this.state.menu === 'search') {
@@ -135,8 +139,12 @@ class App extends React.Component {
             params={particlesOptions}
           />
           <h1 className='viewArea f1 white shadow-2 static'>Gindiri Old Students Association Alumni</h1>
-          {/* {console.log('to cardlist', filteredStudents)} */}
+          <SearchBoxExtension search={this.searchStudent}/>
+          {this.state.error}
           <CardList users={filteredStudents}/>
+          {/* <SearchBox search={this.searchStudent}/> */}
+          {/* {console.log('to cardlist', filteredStudents)} */}
+          
         </div>
       );
     } else if (this.state.menu === 'feedback') {
