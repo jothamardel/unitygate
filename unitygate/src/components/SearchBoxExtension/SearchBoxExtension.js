@@ -3,7 +3,7 @@ import React from 'react';
 
 const SearchBoxExtension = ({ search }) => {
     return (
-        <div className=''>
+        <div className='' style={{}}>
             <div className='pa4 br3 shadow-5 w-50 center'>
                 <input 
                 className='f4 pa2 w-50 br1' 

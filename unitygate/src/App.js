@@ -7,7 +7,7 @@ import Feedback from './components/Feedback/Feedback';
 import './App.css';
 import CardList from './components/CardList/CardList';
 import SearchBoxExtension from './components/SearchBoxExtension/SearchBoxExtension';
-// import Scroll from './components/Scroll/Scroll';
+import Scroll from './components/Scroll/Scroll';
 
 
 const particlesOptions = {
@@ -152,14 +152,18 @@ class App extends React.Component {
             className='particles'
             params={particlesOptions}
           />
-          <Navigation addAlumni={this.alumni} feedback={this.feedback} home={this.home}/>
-          <h1 className='viewArea f1 white'>Gindiri Old Students Association Alumni</h1>
-          <SearchBoxExtension search={this.searchStudent}/>
-          {this.state.error}
-          {/* <Scroll> */}
-            <CardList users={filteredStudents}/>
-          {/* </Scroll> */}
          
+             <Navigation addAlumni={this.alumni} feedback={this.feedback} home={this.home}/>
+            <h1 className='viewArea f1 white'>Gindiri Old Students Association Alumni</h1>
+            {/* <p className='yellow'>for light & truth</p> */}
+            <SearchBoxExtension search={this.searchStudent}/>
+            {this.state.error}
+   
+             <Scroll> 
+                <CardList users={filteredStudents}/>
+                </Scroll>  
+           
+        
           {/* <SearchBox search={this.searchStudent}/> */}
           {/* {console.log('to cardlist', filteredStudents)} */}
           
