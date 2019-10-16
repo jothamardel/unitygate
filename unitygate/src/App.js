@@ -7,6 +7,7 @@ import Feedback from './components/Feedback/Feedback';
 import './App.css';
 import CardList from './components/CardList/CardList';
 import SearchBoxExtension from './components/SearchBoxExtension/SearchBoxExtension';
+// import Scroll from './components/Scroll/Scroll';
 
 
 const particlesOptions = {
@@ -85,6 +86,18 @@ class App extends React.Component {
     this.setState({menu: 'feedback'})
   }
 
+  home = () => {
+    console.log('home')
+    this.setState({menu: 'home'})
+    
+  }
+
+  viewProfile = (id) => {
+    
+  }
+
+
+
   render (){
 
     let filteredStudents;
@@ -112,7 +125,7 @@ class App extends React.Component {
           params={particlesOptions}
         />
        
-        <Navigation addAlumni={this.alumni} feedback={this.feedback}/>
+        <Navigation addAlumni={this.alumni} feedback={this.feedback} home={this.home}/>
         <Logo />
         <SearchBox search={this.searchStudent}/>
         {this.state.error}
@@ -127,6 +140,7 @@ class App extends React.Component {
             params={particlesOptions}
           />
           <p className='white center f1'>Display all Alumni. Coming soon...</p>
+          <Navigation addAlumni={this.alumni} feedback={this.feedback} home={this.home}/>
           {/* <CardList users={filteredStudents}/> */}
           
         </div>
@@ -138,10 +152,14 @@ class App extends React.Component {
             className='particles'
             params={particlesOptions}
           />
-          <h1 className='viewArea f1 white shadow-2 static'>Gindiri Old Students Association Alumni</h1>
+          <Navigation addAlumni={this.alumni} feedback={this.feedback} home={this.home}/>
+          <h1 className='viewArea f1 white'>Gindiri Old Students Association Alumni</h1>
           <SearchBoxExtension search={this.searchStudent}/>
           {this.state.error}
-          <CardList users={filteredStudents}/>
+          {/* <Scroll> */}
+            <CardList users={filteredStudents}/>
+          {/* </Scroll> */}
+         
           {/* <SearchBox search={this.searchStudent}/> */}
           {/* {console.log('to cardlist', filteredStudents)} */}
           
