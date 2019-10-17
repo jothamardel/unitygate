@@ -8,6 +8,8 @@ import './App.css';
 import CardList from './components/CardList/CardList';
 import SearchBoxExtension from './components/SearchBoxExtension/SearchBoxExtension';
 import Scroll from './components/Scroll/Scroll';
+import Edit from './components/Edit/Edit';
+// import Modal from './components/Modal/Modal';
 
 
 const particlesOptions = {
@@ -48,7 +50,7 @@ class App extends React.Component {
       students: [],
       menu: 'home',
       error: '',
-      isModal: false
+      isShowing: false,
     }
   }
 
@@ -92,9 +94,20 @@ class App extends React.Component {
     
   }
 
-  viewProfile = (id) => {
+  edit = (id) => {
+    // console.log(id)
+    this.setState({menu: 'edit'})
+    fetch(`http://localhost:3000/update/${id}`).then(response => {
+        return response.json()
+    }).then(data => {
+        // console.log(data);
+        this.setState({students: data})
+    }).catch(err => console.log('error', err))
+
     
   }
+
+  
 
 
 
@@ -102,6 +115,7 @@ class App extends React.Component {
 
     let filteredStudents;
 
+    
     if(this.state.students.length) {
 
       filteredStudents = this.state.students.filter((students) => {
@@ -113,22 +127,25 @@ class App extends React.Component {
   }
 
 
+ 
+
   // console.log(filteredStudents)
     
  
 
     if (this.state.menu === 'home'){
+      
       return (
         <div className="App">
-        <Particles 
-          className='particles'
-          params={particlesOptions}
-        />
-       
-        <Navigation addAlumni={this.alumni} feedback={this.feedback} home={this.home}/>
-        <Logo />
-        <SearchBox search={this.searchStudent}/>
-        {this.state.error}
+          <Particles 
+            className='particles'
+            params={particlesOptions}
+          />
+        
+          <Navigation addAlumni={this.alumni} feedback={this.feedback} home={this.home}/>
+          <Logo />
+          <SearchBox search={ this.searchStudent }/>
+          {this.state.error}
       
       </div>
       );
@@ -137,7 +154,7 @@ class App extends React.Component {
         <div className="App">
           <Particles 
             className='particles'
-            params={particlesOptions}
+            params={ particlesOptions }
           />
           <p className='white center f1'>Display all Alumni. Coming soon...</p>
           <Navigation addAlumni={this.alumni} feedback={this.feedback} home={this.home}/>
@@ -150,18 +167,18 @@ class App extends React.Component {
         <div className="App">
           <Particles 
             className='particles'
-            params={particlesOptions}
+            params={ particlesOptions }
           />
-         
+            
              <Navigation addAlumni={this.alumni} feedback={this.feedback} home={this.home}/>
             <h1 className='viewArea f1 white'>Gindiri Old Students Association Alumni</h1>
             {/* <p className='yellow'>for light & truth</p> */}
             <SearchBoxExtension search={this.searchStudent}/>
             {this.state.error}
    
-             <Scroll> 
-                <CardList users={filteredStudents}/>
-                </Scroll>  
+            <Scroll> 
+                <CardList users={filteredStudents}  view={this.edit}/>
+            </Scroll>  
            
         
           {/* <SearchBox search={this.searchStudent}/> */}
@@ -179,7 +196,21 @@ class App extends React.Component {
           <Feedback />
         </div>
       );
-    }     
+    } else if (this.state.menu === 'edit'){
+      return (
+        <div className="App">
+          <Particles 
+            className='particles'
+            params={particlesOptions}
+          />
+          {/* <p className='white center f1'>Display all Alumni. Coming soon...</p> */}
+          <Navigation addAlumni={this.alumni} feedback={this.feedback} home={this.home}/>
+          {/* <CardList users={filteredStudents}/> */}
+          <Edit user={this.state.students}/>
+          
+        </div>
+      );
+    }    
     }
 }
 

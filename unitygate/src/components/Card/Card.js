@@ -14,7 +14,7 @@ const image = [AvatarsBlue, AvatarsGreen, AvatarsRed, AvatarsYellow]
 const imageFemale = [AvatarsFemaleBlue, AvatarsFemaleGreen, AvatarsFemaleRed, AvatarsFemaleYellow]
 
 
-const Card = ({ name, year, id, gender }) => {
+const Card = ({ name, year, id, gender, view }) => {
     var num = Math.floor(Math.random() * 4)
     return (
         <div className='card'>
@@ -28,9 +28,7 @@ const Card = ({ name, year, id, gender }) => {
                         <div className="pa2 bt b--black-20">
                         <h1 className="f6 db white hover-light-yellow">{ name.toUpperCase() }</h1>
                         <p className="f6 white mv1">{ year }</p>
-                        {/* <p className="f6 white mv1">{ id }</p> */}
-                        {/* <p className="f6 white mv1">{ gender }</p> */}
-                        <a className="link tc ph3 pv1 db bg-animate bg-green hover-bg-blue white f6 br1" href='https://google.com' >View Profile</a>
+                        <button className="f6 link dim ba ph3 pv2 mb2 dib white bg-green pointer" onClick={() => view(id)}>View Profile</button>
                         </div>
                         <p className="child absolute top-1 right-1 ba pointer bw1 black-40 grow no-underline br-100 w1 h1 pa2 lh-solid b" >×</p>
                     </article>

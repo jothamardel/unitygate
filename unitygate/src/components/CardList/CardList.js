@@ -1,7 +1,8 @@
 import React from 'react';
 import Card from '../Card/Card';
 
-const CardList = ({ users }) => {
+const CardList = ({ users, view }) => {
+    // console.log(view)
   return( 
       <div> 
         {  
@@ -9,10 +10,11 @@ const CardList = ({ users }) => {
             return (
                 <Card 
                 key={users[i].id} 
-                id={i} 
+                id={users[i].id} 
                 name={users[i].name} 
                 year={users[i].year}
-                gender={users[i].gender} 
+                gender={users[i].gender}
+                view={view}
                 />
             );
         })
