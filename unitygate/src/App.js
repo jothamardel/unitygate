@@ -138,6 +138,7 @@ class App extends React.Component {
       filteredStudents = this.state.students.filter((students) => {
         return students.name.toLowerCase().includes(this.state.searchField.toLowerCase()) ||
         students.year.toLowerCase().includes(this.state.searchField.toLowerCase())
+        
       })
     
     // console.log(filteredStudents)
@@ -241,7 +242,7 @@ class App extends React.Component {
           
         </div>
       );
-    }  
+    } 
     } 
 }
 

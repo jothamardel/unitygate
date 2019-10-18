@@ -40,12 +40,20 @@ const Edit = ({ user, view }) => {
                 </div>
                 <div className="mt3">
                     {/* <p className='green'>HOUSE:</p>    */}
-                    <input 
-                    className="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc"
-                    type="text" 
+                    <select  
+                    className="input-reset ba b--black-20 gray pa2 mb2 db w-100" aria-describedby="name-desc"
                     name="house"
                     placeholder={`House:  ${user[0].house === null ? '': user[0].house}`}  
-                    id="house"></input>
+                    id="house">
+                        <option value="aggrey">Aggrey</option>
+                        <option value="curie">Curie</option>
+                        <option value="carver">Carver</option>
+                        <option value="keller">Keller</option>
+                        <option value="livingstone">Livingstone</option>
+                        <option value="nightingale">Nightingale</option>
+                        <option value="crowther">Crowther</option>
+                        <option value="slessor">slessor</option>
+                    </select>
                 </div>
                 <div className="mt3">
                     {/* <p className='green'>MOBILE:</p>    */}
@@ -67,12 +75,20 @@ const Edit = ({ user, view }) => {
                 </div>
                 <div className="mt3">
                     {/* <p className='green'>OCCUPATION</p>    */}
-                    <input 
-                    className="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc"
-                    type="text" 
+                    <select  
+                    className="input-reset ba b--black-20 gray pa2 mb2 db w-100" aria-describedby="name-desc"
                     name="occupation"
-                    placeholder={`Occupation:  ${user[0].occupation === null ? '': user[0].occupation}`}  
-                    id="occupation"></input>
+                    placeholder={`House:  ${user[0].occupation === null ? '': user[0].occupation}`}  
+                    id="occupation">
+                        <option value="lawyer">Lawyer</option>
+                        <option value="doctor">Doctor</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="engineer">Engineer</option>
+                        <option value="politician">Politician</option>
+                        <option value="business">Business</option>
+                        <option value="student">Student</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
             
                 <div className="mt3">
