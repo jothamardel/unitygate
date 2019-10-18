@@ -2,7 +2,7 @@ import React from 'react';
 import './Edit.css';
 
 
-const Edit = ({ user }) => {
+const Edit = ({ user, view }) => {
     console.log(user);
   return (
       <div className='form'> 
@@ -13,7 +13,7 @@ const Edit = ({ user }) => {
                 <div className="mt3">
                     {/* <p className='green'>ID</p> */}
                     <input 
-                    className="pa2 input-reset ba bg-transparent bb black-80 bg-black hover-white w-100"
+                    className="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc"
                     placeholder={ `ID: ${user[0].id}`} 
                     type="text" 
                     name="ID"
@@ -23,7 +23,7 @@ const Edit = ({ user }) => {
                 <div className="mt3"> 
                 {/* <p className='green'>NAME:</p>   */}
                     <input 
-                    className="b pa2 input-reset ba bg-transparent bb bg-white  hover-white w-100" 
+                    className="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc" 
                     type="text" 
                     name="name"  
                     placeholder={`Name:  ${user[0].name}`}
@@ -32,7 +32,7 @@ const Edit = ({ user }) => {
                 <div className="mt3">
                     {/* <p className='green'>YEAR:</p>    */}
                     <input 
-                    className="b pa2 input-reset ba bg-transparent bb bg-white  hover-white w-100" 
+                    className="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc" 
                     type="text" 
                     name="year"
                     placeholder={`Year:  ${user[0].year}`}  
@@ -41,7 +41,7 @@ const Edit = ({ user }) => {
                 <div className="mt3">
                     {/* <p className='green'>HOUSE:</p>    */}
                     <input 
-                    className="b pa2 input-reset ba bg-transparent bb bg-white  hover-white w-100" 
+                    className="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc"
                     type="text" 
                     name="house"
                     placeholder={`House:  ${user[0].house === null ? '': user[0].house}`}  
@@ -50,7 +50,7 @@ const Edit = ({ user }) => {
                 <div className="mt3">
                     {/* <p className='green'>MOBILE:</p>    */}
                     <input 
-                    className="b pa2 input-reset ba bg-transparent bb bg-white  hover-white w-100" 
+                    className="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc"
                     type="text" 
                     name="mobile"
                     placeholder={`Mobile:  ${user[0].mobile === null ? '': user[0].mobile}`}  
@@ -59,7 +59,7 @@ const Edit = ({ user }) => {
                 <div className="mt3">
                     {/* <p className='green'>EMAIL:</p>    */}
                     <input 
-                    className="b pa2 input-reset ba bg-transparent bb bg-white  hover-white w-100" 
+                    className="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc" 
                     type="email" 
                     name="email"  
                     placeholder={`Email:  ${user[0].email === null ? '': user[0].email}`}
@@ -68,7 +68,7 @@ const Edit = ({ user }) => {
                 <div className="mt3">
                     {/* <p className='green'>OCCUPATION</p>    */}
                     <input 
-                    className="b pa2 input-reset ba bg-transparent bb bg-white  hover-white w-100" 
+                    className="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc"
                     type="text" 
                     name="occupation"
                     placeholder={`Occupation:  ${user[0].occupation === null ? '': user[0].occupation}`}  
@@ -77,9 +77,14 @@ const Edit = ({ user }) => {
             
                 <div className="mt3">
                     <button 
-                    className="b ph3 pv2 input-reset ba b--black bg-transparent bb bg-white grow pointer f6 dib" 
+                    className="b ph3 pv2 input-reset ba b--white bg-transparent bb bg-green white grow pointer f6 dib" 
                     type="submit" 
                     value="">Update</button>
+                    <button 
+                    className="b ph3 pv2 input-reset ba b--white bg-transparent bb bg-green white grow pointer f6 dib" 
+                    type="submit" 
+                    value=""
+                    onClick={ () => view(user[0].id)}>View Profile</button>
                 </div>
             </form>
         </main>

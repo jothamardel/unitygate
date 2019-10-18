@@ -1,0 +1,14 @@
+.head {
+    text-align: center;
+}
+
+
+.container {
+    text-align: left;
+    color: black;
+}
+
+.updateprofile {
+    display: flex;
+    position: center;
+}

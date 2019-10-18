@@ -9,6 +9,7 @@ import CardList from './components/CardList/CardList';
 import SearchBoxExtension from './components/SearchBoxExtension/SearchBoxExtension';
 import Scroll from './components/Scroll/Scroll';
 import Edit from './components/Edit/Edit';
+import ShowUserData from './components/ShowUserData/ShowUserData';
 // import Modal from './components/Modal/Modal';
 
 
@@ -72,8 +73,8 @@ class App extends React.Component {
     const searchInput = search.value
     if(searchInput.length === 0){
       this.state.menu === 'home' ?
-      this.setState({menu: 'home', error: 'Invalid input'}) :
-      this.setState({menu: 'search', error: 'invalid input'})
+      this.setState({menu: 'home', error: ''}) :
+      this.setState({menu: 'search', error: ''})
     } else {
     this.setState({searchField: searchInput, menu: 'search'})
     }
@@ -88,9 +89,25 @@ class App extends React.Component {
     this.setState({menu: 'feedback'})
   }
 
+  viewProfile = (id) => {
+    this.setState({menu: 'view'})
+    fetch(`http://localhost:3000/update/${id}`).then(response => {
+        return response.json()
+    }).then(data => {
+        // console.log(data);
+        this.setState({students: data})
+    }).catch(err => console.log('error', err))
+  }
+
   home = () => {
     console.log('home')
     this.setState({menu: 'home'})
+    fetch('http://localhost:3000/').then(response => {
+        return response.json()
+    }).then(data => {
+        // console.log(data);
+        this.setState({students: data})
+    }).catch(err => console.log('error', err))
     
   }
 
@@ -177,7 +194,7 @@ class App extends React.Component {
             {this.state.error}
    
             <Scroll> 
-                <CardList users={filteredStudents}  view={this.edit}/>
+                <CardList users={filteredStudents}  view={this.viewProfile}/>
             </Scroll>  
            
         
@@ -206,12 +223,26 @@ class App extends React.Component {
           {/* <p className='white center f1'>Display all Alumni. Coming soon...</p> */}
           <Navigation addAlumni={this.alumni} feedback={this.feedback} home={this.home}/>
           {/* <CardList users={filteredStudents}/> */}
-          <Edit user={this.state.students}/>
+          <Edit user={this.state.students} view={this.viewProfile}/>
           
         </div>
       );
-    }    
-    }
+    }  else if (this.state.menu === 'view') {
+      return (
+        <div className="App">
+          <Particles 
+            className='particles'
+            params={particlesOptions}
+          />
+          {/* <p className='white center f1'>Display all Alumni. Coming soon...</p> */}
+          <Navigation addAlumni={this.alumni} feedback={this.feedback} home={this.home}/>
+          {/* <CardList users={filteredStudents}/> */}
+          <ShowUserData user={this.state.students} edit={this.edit}/>
+          
+        </div>
+      );
+    }  
+    } 
 }
 
 export default App;
