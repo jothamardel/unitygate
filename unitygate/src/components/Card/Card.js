@@ -30,7 +30,7 @@ const Card = ({ name, year, id, gender, view }) => {
                         <p className="f6 white mv1">{ year }</p>
                         <button className="f6 link dim ba ph3 pv2 mb2 dib white bg-green pointer" onClick={() => view(id)}>View Profile</button>
                         </div>
-                        <p className="child absolute top-1 right-1 ba pointer bw1 black-40 grow no-underline br-100 w1 h1 pa2 lh-solid b" >×</p>
+                        <p className="child absolute top-1 right-1 ba shadow-2 pointer bw1 black-40 grow no-underline br-100 w1 h1 pa2 lh-solid b" >×</p>
                     </article>
                 </section>
             </div>

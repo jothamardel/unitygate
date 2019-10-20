@@ -19,6 +19,7 @@ const ShowUserData = ({ user, edit }) => {
                 <p className="container">{ `Email: ${user[0].email === null ? 'N/A' : user[0].email}` }</p>
                 <p className="container">{ `House: ${user[0].house === null ? 'N/A' : user[0].house}` }</p>
             </div>
+            {/* <hr></hr> */}
             <div className='center'>
                 <button className="updateprofile f6 link dim ba ph3 pv2 mb2 dib white bg-green pointer" 
                 onClick={ () => edit(user[0].id)}>Update Profile</button>

@@ -125,6 +125,7 @@ class App extends React.Component {
   }
 
   
+  
 
 
 
@@ -224,7 +225,7 @@ class App extends React.Component {
           {/* <p className='white center f1'>Display all Alumni. Coming soon...</p> */}
           <Navigation addAlumni={this.alumni} feedback={this.feedback} home={this.home}/>
           {/* <CardList users={filteredStudents}/> */}
-          <Edit user={this.state.students} view={this.viewProfile}/>
+          <Edit user={this.state.students} view={this.viewProfile} handleSubmit={this.handleSubmit}/>
           
         </div>
       );

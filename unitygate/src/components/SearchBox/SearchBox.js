@@ -17,7 +17,8 @@ const SearchBox = ({ search }) => {
                 type='search'
                 id='gosa' 
                 placeholder='Search for old student'
-                onKeyPress={ (e) => e.keyCode === '13' ? search : null } 
+                // onKeyPress={  } 
+                // onSubmit={ search }
                 >
                 </input>
                 <button className='w-30 grow f4 link ph3 pv2 dib white bg-green br2' 
